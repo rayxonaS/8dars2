@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRUD</title>
+    <style>
+      label {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" />
+      </div>
+      <br />
+      <div>
+        <label for="age">Age:</label>
+        <input type="number" name="age" id="age" />
+      </div>
+      <br />
+      <button>Submit</button>
+    </form>
+    <ul>
+      <template>
+        <li>
+          <h4>Name: Rayxona</h4>
+          <h5>Age: 21</h5>
+          <button class="edit">Edit</button>
+          <button class="delete">Delete</button>
+        </li>
+      </template>
+    </ul>
+
+    <script src="app.js"></script>
+  </body>
+</html>
