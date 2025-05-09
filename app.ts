@@ -29,14 +29,12 @@ function updateUI(users: User[]) {
       const item = deleteBtn.closest("li");
       if (!item) return;
 
-      // Найдём имя и возраст в этом элементе
       const nameText =
         item.querySelector("h4")?.textContent?.replace("Name: ", "") ?? "";
       const ageText =
         item.querySelector("h5")?.textContent?.replace("Age: ", "") ?? "";
       const age = parseInt(ageText, 10);
 
-      // Найдём пользователя в массиве по name и age
       const index = users.findIndex(
         (u) => u.name === nameText && u.age === age
       );
@@ -53,7 +51,7 @@ function updateUI(users: User[]) {
       nameInput.value = user.name;
       ageInput.value = user.age.toString();
 
-      editIndex = index; // запоминаем индекс редактируемого пользователя
+      editIndex = index;
     });
 
     ul.appendChild(clone);
