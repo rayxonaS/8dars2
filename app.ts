@@ -72,5 +72,13 @@ form.addEventListener("submit", (e) => {
 
   users.push({ name: name.value, age: +age.value });
   updateUI(users);
+  localStorage.setItem("users", JSON.stringify(users));
   form.reset();
 });
+
+const saved = localStorage.getItem("users");
+if (saved) {
+  const parsed = JSON.parse(saved) as User[];
+  users.push(...parsed);
+  updateUI(users);
+}
