@@ -10,7 +10,10 @@ type User = {
 
 const users: User[] = [];
 
+let editIndex: number | null = null;
+
 function updateUI(users: User[]) {
+  ul.innerHTML = "";
   users.forEach((user) => {
     const clone = template.content.cloneNode(true) as HTMLTemplateElement;
 
@@ -21,6 +24,37 @@ function updateUI(users: User[]) {
 
     h4.textContent = user.name;
     h5.textContent = user.age.toString();
+
+    deleteBtn.addEventListener("click", () => {
+      const item = deleteBtn.closest("li");
+      if (!item) return;
+
+      // Найдём имя и возраст в этом элементе
+      const nameText =
+        item.querySelector("h4")?.textContent?.replace("Name: ", "") ?? "";
+      const ageText =
+        item.querySelector("h5")?.textContent?.replace("Age: ", "") ?? "";
+      const age = parseInt(ageText, 10);
+
+      // Найдём пользователя в массиве по name и age
+      const index = users.findIndex(
+        (u) => u.name === nameText && u.age === age
+      );
+      if (index > -1) {
+        users.splice(index, 1);
+        updateUI(users);
+      }
+    });
+
+    editBtn.addEventListener("click", () => {
+      const nameInput = form.elements.namedItem("name") as HTMLInputElement;
+      const ageInput = form.elements.namedItem("age") as HTMLInputElement;
+
+      nameInput.value = user.name;
+      ageInput.value = user.age.toString();
+
+      editIndex = index; // запоминаем индекс редактируемого пользователя
+    });
 
     ul.appendChild(clone);
   });
